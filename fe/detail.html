@@ -1,0 +1,43 @@
+<div class="px-5" th:fragment="content" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h2 class="mb-0">Department Details</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item fw-bold">ID: <span class="text-primary" th:text="${department.id}"></span></li>
+                    <li class="list-group-item fw-bold">Name: <span class="text-primary" th:text="${department.name}"></span></li>
+                    <li class="list-group-item fw-bold">Location: <span class="text-primary" th:text="${department.location.name}"></span></li>
+                    <li class="list-group-item fw-bold">Users Count: <span class="text-primary" th:text="${department.users.size()}"></span></li>
+                    <li class="list-group-item fw-bold">Courses Count: <span class="text-primary" th:text="${department.courses.size()}"></span></li>
+                    <li class="list-group-item fw-bold">Created At: <span class="text-primary" th:text="${#temporals.format(department.createdAt, 'dd-MM-yyyy HH:mm')}"></span></li>
+                    <li class="list-group-item fw-bold">Updated At: <span class="text-primary" th:text="${#temporals.format(department.updatedAt, 'dd-MM-yyyy HH:mm')}"></span></li>
+                </ul>
+
+                <!-- Users List -->
+                <h4 class="mt-4">Users</h4>
+                <div class="border p-3 rounded bg-light" style="max-height: 300px; overflow-y: auto;">
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="user : ${department.users}">
+                            <strong th:text="${user.name}"></strong>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Courses List -->
+                <h4 class="mt-4">Courses</h4>
+                <div class="border p-3 rounded bg-light" style="max-height: 300px; overflow-y: auto;">
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="course : ${department.courses}">
+                            <strong th:text="${course.name}"></strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer bg-light text-end">
+                <a th:href="@{/departments}" class="btn btn-secondary px-4">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
